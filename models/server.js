@@ -1,5 +1,6 @@
 const express = require('express');
 const cors = require('cors');
+const { dbConnection } = require('../database/config');
 
 class Server {
     constructor(){
@@ -8,11 +9,18 @@ class Server {
         // Prefijos de rutas -> Igual que el prefix routes de flask
         this.usuariosPath = '/api/usuarios';
 
+        // Conectar a base de datos
+        this.conectarDB();
+
         // Middlewares -> Funciones que añaden otra funcionalidad al server
         this.middlewares()
 
         // Rutas de la aplicación
         this.routes();
+    }
+
+    async conectarDB(){
+        await dbConnection();
     }
 
     middlewares(){
