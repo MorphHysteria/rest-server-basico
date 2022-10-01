@@ -1,6 +1,5 @@
 const {response, request} = require('express');
 const bcryptjs = require('bcryptjs');
-const {validationResult} = require('express-validator')
 
 const Usuario = require('../models/usuario');
 
@@ -76,7 +75,7 @@ const usuariosDELETE = async(req, res = response) => {
     // Borrado físico
     // const usuario = await Usuario.findByIdAndDelete(id);
 
-    // Cambiar el estadao del usuario, recomendado para no perder la integridad referencial de la base de datos
+    // Cambiar el estado del usuario, recomendado para no perder la integridad referencial de la base de datos
     const usuario = await Usuario.findByIdAndUpdate(id, {estado: false});
 
     res.json(usuario);
